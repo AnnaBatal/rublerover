@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#7c3aed">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="icon-192.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RubleRover | Главная</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- ===== ШАПКА ===== -->
     <header>
         <div class="header-content">
-            <div class="logo">
-                <h1>✈️ RubleRover</h1>
-            </div>
+            <div class="logo">✈️ RubleRover</div>
             <nav>
                 <a href="index.html" class="active">Главная</a>
                 <a href="calculator.html">Калькулятор</a>
@@ -30,28 +20,23 @@
         </div>
     </header>
 
-    <!-- ===== БАННЕР ===== -->
-    <section class="banner">
-        <div class="banner-content">
-            <h1>Планируй бюджет путешествий</h1>
-            <p>Рассчитай расходы на поездку в любую страну мира</p>
-            <a href="calculator.html" class="btn-primary">Начать расчёт →</a>
-        </div>
-    </section>
+    <div class="banner">
+        <h1>Планируй бюджет путешествий</h1>
+        <p>Рассчитай расходы на поездку</p>
+    </div>
 
-    <!-- ===== ПРЕИМУЩЕСТВА ===== -->
-    <section class="features">
-        <h2>Что умеет наш сервис</h2>
+    <div class="features">
+        <h2>Что умеет сервис</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="icon">💰</div>
                 <h3>Расчёт бюджета</h3>
-                <p>Введи расходы на жильё, еду, транспорт и билеты — получи общую сумму</p>
+                <p>Введи расходы на жильё, еду, транспорт и билеты</p>
             </div>
             <div class="feature-card">
                 <div class="icon">📊</div>
                 <h3>История поездок</h3>
-                <p>Все твои расчёты сохраняются. Ничего не потеряется</p>
+                <p>Все твои расчёты сохраняются</p>
             </div>
             <div class="feature-card">
                 <div class="icon">🌍</div>
@@ -59,158 +44,88 @@
                 <p>Рассчитывай бюджет для любой точки мира</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- ===== БЕЗВИЗОВЫЕ СТРАНЫ ===== -->
-    <section class="popular-countries">
-        <h2>🛂 Безвизовые страны для россиян</h2>
-        <p class="subtitle">Путешествуй без визы — рассчитывай бюджет с RubleRover</p>
-        
+    <div class="countries">
+        <h2>Безвизовые страны для россиян</h2>
         <div class="countries-grid">
-            <!-- Турция -->
             <div class="country-card">
-                <div class="country-flag">🇹🇷</div>
                 <h3>Турция</h3>
-                <p class="country-capital">Столица: Анкара</p>
-                <p class="country-currency">💶 Валюта: Лира (TRY)</p>
-                <p class="country-visa">✅ Без визы до 60 дней</p>
-                <p class="country-desc">Страна контрастов: древние руины, пляжи Средиземного моря и восточные базары.</p>
+                <p>Столица: Анкара</p>
+                <p>Валюта: Турецкая лира</p>
+                <p>Без визы до 60 дней</p>
             </div>
-
-            <!-- Таиланд -->
             <div class="country-card">
-                <div class="country-flag">🇹🇭</div>
                 <h3>Таиланд</h3>
-                <p class="country-capital">Столица: Бангкок</p>
-                <p class="country-currency">💶 Валюта: Бат (THB)</p>
-                <p class="country-visa">✅ Без визы до 60 дней</p>
-                <p class="country-desc">Экзотика, белоснежные пляжи, сочная еда и улыбчивые люди.</p>
+                <p>Столица: Бангкок</p>
+                <p>Валюта: Тайский бат</p>
+                <p>Без визы до 60 дней</p>
             </div>
-
-            <!-- ОАЭ -->
             <div class="country-card">
-                <div class="country-flag">🇦🇪</div>
-                <h3>ОАЭ</h3>
-                <p class="country-capital">Столица: Абу-Даби</p>
-                <p class="country-currency">💶 Валюта: Дирхам (AED)</p>
-                <p class="country-visa">✅ Без визы до 90 дней</p>
-                <p class="country-desc">Футуристические небоскрёбы, роскошные отели и пустынные сафари.</p>
+                <h3>Объединённые Арабские Эмираты</h3>
+                <p>Столица: Абу-Даби</p>
+                <p>Валюта: Дирхам ОАЭ</p>
+                <p>Без визы до 90 дней</p>
             </div>
-
-            <!-- Индонезия -->
             <div class="country-card">
-                <div class="country-flag">🇮🇩</div>
-                <h3>Индонезия (Бали)</h3>
-                <p class="country-capital">Столица: Джакарта</p>
-                <p class="country-currency">💶 Валюта: Рупия (IDR)</p>
-                <p class="country-visa">✅ Без визы до 30 дней</p>
-                <p class="country-desc">Остров богов: вулканы, рисовые террасы, серфинг и духовные практики.</p>
+                <h3>Индонезия</h3>
+                <p>Столица: Джакарта</p>
+                <p>Валюта: Индонезийская рупия</p>
+                <p>Без визы до 30 дней</p>
             </div>
-
-            <!-- Египет -->
             <div class="country-card">
-                <div class="country-flag">🇪🇬</div>
                 <h3>Египет</h3>
-                <p class="country-capital">Столица: Каир</p>
-                <p class="country-currency">💶 Валюта: Фунт (EGP)</p>
-                <p class="country-visa">✅ Без визы до 30 дней</p>
-                <p class="country-desc">Пирамиды, Красное море, дайвинг и круглогодичное лето.</p>
+                <p>Столица: Каир</p>
+                <p>Валюта: Египетский фунт</p>
+                <p>Без визы до 30 дней</p>
             </div>
-
-            <!-- Сербия -->
             <div class="country-card">
-                <div class="country-flag">🇷🇸</div>
-                <h3>Сербия</h3>
-                <p class="country-capital">Столица: Белград</p>
-                <p class="country-currency">💶 Валюта: Динар (RSD)</p>
-                <p class="country-visa">✅ Без визы до 30 дней</p>
-                <p class="country-desc">Балканский колорит, крепости на Дунае, вкуснейшее мясо и гостеприимство.</p>
-            </div>
-
-            <!-- Грузия -->
-            <div class="country-card">
-                <div class="country-flag">🇬🇪</div>
                 <h3>Грузия</h3>
-                <p class="country-capital">Столица: Тбилиси</p>
-                <p class="country-currency">💶 Валюта: Лари (GEL)</p>
-                <p class="country-visa">✅ Без визы до 365 дней</p>
-                <p class="country-desc">Хинкали, горы, вино и радушие. Можно жить целый год.</p>
+                <p>Столица: Тбилиси</p>
+                <p>Валюта: Грузинский лари</p>
+                <p>Без визы до 365 дней</p>
             </div>
-
-            <!-- Армения -->
             <div class="country-card">
-                <div class="country-flag">🇦🇲</div>
+                <h3>Сербия</h3>
+                <p>Столица: Белград</p>
+                <p>Валюта: Сербский динар</p>
+                <p>Без визы до 30 дней</p>
+            </div>
+            <div class="country-card">
                 <h3>Армения</h3>
-                <p class="country-capital">Столица: Ереван</p>
-                <p class="country-currency">💶 Валюта: Драм (AMD)</p>
-                <p class="country-visa">✅ Без визы до 180 дней</p>
-                <p class="country-desc">Древнейший христианский храм, кавказское застолье, горный воздух.</p>
+                <p>Столица: Ереван</p>
+                <p>Валюта: Армянский драм</p>
+                <p>Без визы до 180 дней</p>
             </div>
-
-            <!-- Казахстан -->
             <div class="country-card">
-                <div class="country-flag">🇰🇿</div>
                 <h3>Казахстан</h3>
-                <p class="country-capital">Столица: Астана</p>
-                <p class="country-currency">💶 Валюта: Тенге (KZT)</p>
-                <p class="country-visa">✅ Без визы до 90 дней</p>
-                <p class="country-desc">Степь, Чарынский каньон, современные города и космодром Байконур.</p>
+                <p>Столица: Астана</p>
+                <p>Валюта: Казахстанский тенге</p>
+                <p>Без визы до 90 дней</p>
             </div>
-
-            <!-- Киргизия -->
             <div class="country-card">
-                <div class="country-flag">🇰🇬</div>
                 <h3>Киргизия</h3>
-                <p class="country-capital">Столица: Бишкек</p>
-                <p class="country-currency">💶 Валюта: Сом (KGS)</p>
-                <p class="country-visa">✅ Без визы до 60 дней</p>
-                <p class="country-desc">Иссык-Куль, Тянь-Шань, кочевая культура и горные пастбища.</p>
+                <p>Столица: Бишкек</p>
+                <p>Валюта: Киргизский сом</p>
+                <p>Без визы до 60 дней</p>
             </div>
-
-            <!-- Беларусь -->
             <div class="country-card">
-                <div class="country-flag">🇧🇾</div>
                 <h3>Беларусь</h3>
-                <p class="country-capital">Столица: Минск</p>
-                <p class="country-currency">💶 Валюта: Бел. рубль (BYN)</p>
-                <p class="country-visa">✅ Без визы до 90 дней</p>
-                <p class="country-desc">Аккуратные города, замки, Беловежская пуща и уютная атмосфера.</p>
+                <p>Столица: Минск</p>
+                <p>Валюта: Белорусский рубль</p>
+                <p>Без визы до 90 дней</p>
             </div>
-
-            <!-- Израиль -->
             <div class="country-card">
-                <div class="country-flag">🇮🇱</div>
                 <h3>Израиль</h3>
-                <p class="country-capital">Столица: Иерусалим</p>
-                <p class="country-currency">💶 Валюта: Шекель (ILS)</p>
-                <p class="country-visa">✅ Без визы до 90 дней</p>
-                <p class="country-desc">Колыбель трёх религий, Мёртвое море и древние города.</p>
+                <p>Столица: Иерусалим</p>
+                <p>Валюта: Израильский шекель</p>
+                <p>Без визы до 90 дней</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- ===== ПОДВАЛ ===== -->
     <footer>
-        <div class="footer-content">
-            <p>✈️ RubleRover — Тревел-калькулятор бюджета</p>
-            <p>© 2026</p>
-        </div>
+        <p> RubleRover</p>
     </footer>
-
-<!-- ===== ПОДКЛЮЧЕНИЕ SERVICE WORKER ===== -->
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-                .then((registration) => {
-                    console.log('✅ Service Worker зарегистрирован:', registration);
-                })
-                .catch((error) => {
-                    console.log('❌ Ошибка регистрации Service Worker:', error);
-                });
-        });
-    }
-</script>
-
 </body>
 </html>

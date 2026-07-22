@@ -7,12 +7,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
         <div class="header-content">
-            <div class="logo">
-                <h1>✈️ RubleRover</h1>
-            </div>
+            <div class="logo">✈️ RubleRover</div>
             <nav>
                 <a href="index.html">Главная</a>
                 <a href="calculator.html">Калькулятор</a>
@@ -24,69 +21,49 @@
     </header>
 
     <div class="container">
-        <h1>📬 Связь с нами</h1>
-        <p class="subtitle">Есть вопросы или предложения? Напиши нам!</p>
+        <h1>Связь с нами</h1>
+        <p>Есть вопросы? Напиши!</p>
 
-        <form id="contactForm" onsubmit="sendMessage(event)">
+        <form id="contactForm">
             <div class="form-group">
-                <label>Ваше имя</label>
-                <input type="text" id="name" placeholder="Иван Иванов" required>
+                <label>Имя</label>
+                <input type="text" id="name" placeholder="Иван" required>
             </div>
-
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" id="email" placeholder="ivan@mail.ru" required>
             </div>
-
             <div class="form-group">
                 <label>Сообщение</label>
-                <textarea id="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
+                <textarea id="message" rows="4" placeholder="Ваше сообщение..." required></textarea>
             </div>
-
-            <button type="submit" class="btn">📨 Отправить</button>
+            <button type="submit" class="btn">Отправить</button>
         </form>
 
-        <div id="contactResult" style="display: none; margin-top: 20px; padding: 15px; background: #d4edda; border-radius: 10px; color: #155724; text-align: center;">
-            ✅ Спасибо! Ваше сообщение отправлено.
+        <div id="contactResult" style="display:none;">
+            <p>✅ Спасибо! Сообщение отправлено.</p>
         </div>
 
-        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee;">
-            <h3 style="color: #4c1d95;">Или свяжись с нами напрямую:</h3>
-            <p>📧 Email: info@rublerover.ru</p>
-            <p>📱 Телефон: +7 (999) 123-45-67</p>
-            <p>📍 Адрес: г. Москва, ул. Путешественников, д. 1</p>
-        </div>
+        <hr>
+        <h3>Контакты</h3>
+        <p>Email: info@rublerover.ru</p>
+        <p>Телефон: +7 (999) 67-67-67</p>
+        <p>Адрес: Москва</p>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <p>✈️ RubleRover — Тревел-калькулятор бюджета</p>
-            <p>© 2026</p>
-        </div>
+        <p> RubleRover</p>
     </footer>
 
     <script>
-        function sendMessage(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            // Просто показываем сообщение об успехе
+        document.getElementById('contactForm').onsubmit = function(e) {
+            e.preventDefault();
             document.getElementById('contactResult').style.display = 'block';
-
-            // Очищаем форму
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('message').value = '';
-
-            // Через 3 секунды скрываем сообщение
-            setTimeout(() => {
+            this.reset();
+            setTimeout(function() {
                 document.getElementById('contactResult').style.display = 'none';
-            }, 5000);
-        }
+            }, 3000);
+        };
     </script>
-
 </body>
 </html>
