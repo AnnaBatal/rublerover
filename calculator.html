@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubleRover | Калькулятор</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>✈️ RubleRover</h1>
+            </div>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="calculator.html" class="active">Калькулятор</a>
+                <a href="history.html">История</a>
+                <a href="about.html">О проекте</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>📝 Калькулятор бюджета</h1>
+        <p class="subtitle">Введи свои расходы в рублях — можно вводить любые числа</p>
+
+        <form id="budgetForm" onsubmit="saveTrip(event)">
+            <div class="form-group">
+                <label>🌍 Город / Страна</label>
+                <input type="text" id="city" placeholder="Например: Париж, Франция" required>
+            </div>
+
+            <div class="form-group">
+                <label>🏠 Жильё (за весь период, в рублях)</label>
+                <input type="number" id="housing" placeholder="0" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label>🍕 Еда (за весь период, в рублях)</label>
+                <input type="number" id="food" placeholder="0" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label>🚌 Транспорт (за весь период, в рублях)</label>
+                <input type="number" id="transport" placeholder="0" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label>🎫 Билеты (перелёт / поезд, в рублях)</label>
+                <input type="number" id="tickets" placeholder="0" min="0" required>
+            </div>
+
+            <button type="submit" class="btn">💰 Рассчитать и сохранить</button>
+        </form>
+
+        <!-- Результат -->
+        <div id="result" style="display: none; margin-top: 30px;">
+            <div class="result-box">
+                <h3>📊 Результат расчёта</h3>
+                <div id="resultCity" style="font-size: 20px; font-weight: bold; color: #4c1d95; text-align: center; margin-bottom: 15px;"></div>
+                <div class="result-item">
+                    <span>🏠 Жильё</span>
+                    <span id="resultHousing">0 ₽</span>
+                </div>
+                <div class="result-item">
+                    <span>🍕 Еда</span>
+                    <span id="resultFood">0 ₽</span>
+                </div>
+                <div class="result-item">
+                    <span>🚌 Транспорт</span>
+                    <span id="resultTransport">0 ₽</span>
+                </div>
+                <div class="result-item">
+                    <span>🎫 Билеты</span>
+                    <span id="resultTickets">0 ₽</span>
+                </div>
+                <div class="result-item total">
+                    <span>💰 ИТОГО</span>
+                    <span id="resultTotal">0 ₽</span>
+                </div>
+                <div style="text-align: center; margin-top: 15px; color: #28a745; font-weight: bold;">
+                    ✅ Сохранено в истории!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>✈️ RubleRover — Тревел-калькулятор бюджета</p>
+            <p>© 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        function saveTrip(event) {
+            event.preventDefault();
+
+            // Получаем данные из формы
+            const city = document.getElementById('city').value;
+            const housing = parseFloat(document.getElementById('housing').value) || 0;
+            const food = parseFloat(document.getElementById('food').value) || 0;
+            const transport = parseFloat(document.getElementById('transport').value) || 0;
+            const tickets = parseFloat(document.getElementById('tickets').value) || 0;
+
+            const total = housing + food + transport + tickets;
+            const date = new Date().toLocaleDateString('ru-RU');
+
+            // Создаём объект с данными
+            const trip = {
+                id: Date.now(),
+                city: city,
+                housing: housing,
+                food: food,
+                transport: transport,
+                tickets: tickets,
+                total: total,
+                date: date
+            };
+
+            // Получаем существующие поездки из localStorage
+            let trips = JSON.parse(localStorage.getItem('trips')) || [];
+
+            // Добавляем новую поездку
+            trips.push(trip);
+
+            // Сохраняем обратно в localStorage
+            localStorage.setItem('trips', JSON.stringify(trips));
+
+            // Показываем результат
+            const format = (num) => num.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ₽';
+
+            document.getElementById('resultCity').textContent = '✈️ ' + city;
+            document.getElementById('resultHousing').textContent = format(housing);
+            document.getElementById('resultFood').textContent = format(food);
+            document.getElementById('resultTransport').textContent = format(transport);
+            document.getElementById('resultTickets').textContent = format(tickets);
+            document.getElementById('resultTotal').textContent = format(total);
+
+            document.getElementById('result').style.display = 'block';
+
+            // Очищаем форму
+            document.getElementById('city').value = '';
+            document.getElementById('housing').value = '';
+            document.getElementById('food').value = '';
+            document.getElementById('transport').value = '';
+            document.getElementById('tickets').value = '';
+        }
+    </script>
+
+</body>
+</html>

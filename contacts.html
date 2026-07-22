@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubleRover | Контакты</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>✈️ RubleRover</h1>
+            </div>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="calculator.html">Калькулятор</a>
+                <a href="history.html">История</a>
+                <a href="about.html">О проекте</a>
+                <a href="contacts.html" class="active">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>📬 Связь с нами</h1>
+        <p class="subtitle">Есть вопросы или предложения? Напиши нам!</p>
+
+        <form id="contactForm" onsubmit="sendMessage(event)">
+            <div class="form-group">
+                <label>Ваше имя</label>
+                <input type="text" id="name" placeholder="Иван Иванов" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="ivan@mail.ru" required>
+            </div>
+
+            <div class="form-group">
+                <label>Сообщение</label>
+                <textarea id="message" rows="5" placeholder="Ваше сообщение..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn">📨 Отправить</button>
+        </form>
+
+        <div id="contactResult" style="display: none; margin-top: 20px; padding: 15px; background: #d4edda; border-radius: 10px; color: #155724; text-align: center;">
+            ✅ Спасибо! Ваше сообщение отправлено.
+        </div>
+
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee;">
+            <h3 style="color: #4c1d95;">Или свяжись с нами напрямую:</h3>
+            <p>📧 Email: info@rublerover.ru</p>
+            <p>📱 Телефон: +7 (999) 123-45-67</p>
+            <p>📍 Адрес: г. Москва, ул. Путешественников, д. 1</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>✈️ RubleRover — Тревел-калькулятор бюджета</p>
+            <p>© 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        function sendMessage(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Просто показываем сообщение об успехе
+            document.getElementById('contactResult').style.display = 'block';
+
+            // Очищаем форму
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+
+            // Через 3 секунды скрываем сообщение
+            setTimeout(() => {
+                document.getElementById('contactResult').style.display = 'none';
+            }, 5000);
+        }
+    </script>
+
+</body>
+</html>
