@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RubleRover | История</title>
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- Кнопка установки приложения -->
+<button id="installButton" style="display:none; position:fixed; bottom:20px; right:20px; padding:14px 28px; background:#4a2c8a; color:white; border:none; border-radius:50px; font-size:16px; font-weight:bold; cursor:pointer; box-shadow:0 4px 15px rgba(74,44,138,0.4); z-index:999;">
+    📱 Установить приложение
+</button>
     <header>
         <div class="header-content">
             <div class="logo">✈️ RubleRover</div>
@@ -69,5 +74,34 @@
     <footer>
         <p> RubleRover</p>
     </footer>
+<script>
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Предотвращаем автоматический запрос
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Показываем кнопку
+        const installBtn = document.getElementById('installButton');
+        installBtn.style.display = 'block';
+        
+        // Обработчик клика по кнопке
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                console.log('Результат:', result.outcome);
+                deferredPrompt = null;
+                installBtn.style.display = 'none';
+            }
+        });
+    });
+
+    // Если приложение уже установлено — скрываем кнопку
+    window.addEventListener('appinstalled', () => {
+        document.getElementById('installButton').style.display = 'none';
+    });
+</script>
 </body>
 </html>
