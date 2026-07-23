@@ -71,3 +71,27 @@ self.addEventListener('fetch', (event) => {
             })
     );
 });
+
+// Обработчик клика по уведомлению
+self.addEventListener('notificationclick', (event) => {
+    console.log('Нажато уведомление:', event.notification);
+    event.notification.close();
+
+    const url = event.notification.data?.url || '/';
+    
+    event.waitUntil(
+        clients.matchAll({ type: 'window', includeUncontrolled: true })
+            .then(windowClients => {
+                // Если есть уже открытое окно — переключаемся на него
+                for (const client of windowClients) {
+                    if (client.url === url && 'focus' in client) {
+                        return client.focus();
+                    }
+                }
+                // Если нет — открываем новое
+                if (clients.openWindow) {
+                    return clients.openWindow(url);
+                }
+            })
+    );
+});
