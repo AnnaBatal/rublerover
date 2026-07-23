@@ -132,33 +132,105 @@
     <footer>
         <p> RubleRover</p>
     </footer>
-<script>
-    let deferredPrompt;
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Предотвращаем автоматический запрос
-        e.preventDefault();
-        deferredPrompt = e;
-        
-        // Показываем кнопку
-        const installBtn = document.getElementById('installButton');
-        installBtn.style.display = 'block';
-        
-        // Обработчик клика по кнопке
-        installBtn.addEventListener('click', async () => {
+    <script>
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Предотвращаем стандартное предложение браузера
+            e.preventDefault();
+            // Сохраняем событие
+            deferredPrompt = e;
+            
+            // Показываем кнопку
+            const installBtn = document.getElementById('installButton');
+            installBtn.style.display = 'block';
+        });
+
+        // Обработчик клика по кнопке — теперь он ОТДЕЛЬНО
+        document.getElementById('installButton').addEventListener('click', async () => {
             if (deferredPrompt) {
+                // Показываем диалог установки
                 deferredPrompt.prompt();
                 const result = await deferredPrompt.userChoice;
                 console.log('Результат:', result.outcome);
                 deferredPrompt = null;
-                installBtn.style.display = 'none';
+                // Скрываем кнопку после установки
+                document.getElementById('installButton').style.display = 'none';
             }
         });
-    });
 
-    // Если приложение уже установлено — скрываем кнопку
-    window.addEventListener('appinstalled', () => {
-        document.getElementById('installButton').style.display = 'none';
+        // Если приложение уже установлено — скрываем кнопку
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installButton').style.display = 'none';
+        });
+    </script>
+<!-- Кнопка для теста уведомления -->
+<button id="notifyBtn" class="btn">🔔 Показать тестовое уведомление</button>
+
+<script>
+    // Функция запроса разрешения на уведомления
+    function requestNotificationPermission() {
+        if (!("Notification" in window)) {
+            alert("Этот браузер не поддерживает уведомления");
+            return;
+        }
+
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                console.log("Разрешение на уведомления получено!");
+                showNotification("✅ Уведомления включены!", "Теперь вы будете получать уведомления от RubleRover");
+            } else {
+                console.log("Разрешение на уведомления отклонено");
+            }
+        });
+    }
+
+    // Функция показа уведомления
+    function showNotification(title, body) {
+        if (!("Notification" in window) || Notification.permission !== "granted") {
+            alert("Сначала разрешите уведомления!");
+            return;
+        }
+
+        const options = {
+            body: body || "Привет от RubleRover!",
+            icon: "/icon-192.png",
+            badge: "/icon-192.png",
+            vibrate: [200, 100, 200],
+            requireInteraction: true, // Не исчезает само
+            data: {
+                url: "/"
+            }
+        };
+
+        navigator.serviceWorker.ready.then(registration => {
+            registration.showNotification(title || "🔔 RubleRover", options);
+        });
+    }
+
+    // Пример: при загрузке страницы предлагаем включить уведомления
+    if ("Notification" in window && Notification.permission === "default") {
+        // Ждём 3 секунды и предлагаем
+        setTimeout(() => {
+            if (confirm("Хотите включить уведомления от RubleRover?")) {
+                requestNotificationPermission();
+            }
+        }, 3000);
+    }
+
+    // Обработчик клика по кнопке (если вы добавили кнопку)
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('notifyBtn');
+        if (btn) {
+            btn.addEventListener('click', function() {
+                if (Notification.permission === "granted") {
+                    showNotification("🔔 Тестовое уведомление", "Это уведомление от RubleRover!");
+                } else {
+                    requestNotificationPermission();
+                }
+            });
+        }
     });
 </script>
 </body>
