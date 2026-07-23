@@ -70,37 +70,43 @@
             }, 3000);
         };
     </script>
-<script>
-    let deferredPrompt;
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Предотвращаем стандартное предложение браузера
-        e.preventDefault();
-        // Сохраняем событие
-        deferredPrompt = e;
-        
-        // Показываем кнопку
-        const installBtn = document.getElementById('installButton');
-        installBtn.style.display = 'block';
-    });
+    <script>
+        let deferredPrompt;
 
-    // Обработчик клика по кнопке — выносим ОТДЕЛЬНО
-    document.getElementById('installButton').addEventListener('click', async () => {
-        if (deferredPrompt) {
-            // Показываем диалог установки
-            deferredPrompt.prompt();
-            const result = await deferredPrompt.userChoice;
-            console.log('Результат:', result.outcome);
-            deferredPrompt = null;
-            // Скрываем кнопку после установки
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('installButton');
+            installBtn.style.display = 'block';
+        });
+
+        document.getElementById('installButton').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                console.log('Результат:', result.outcome);
+                deferredPrompt = null;
+                document.getElementById('installButton').style.display = 'none';
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
             document.getElementById('installButton').style.display = 'none';
-        }
-    });
+        });
+    </script>
 
-    // Если приложение уже установлено — скрываем кнопку
-    window.addEventListener('appinstalled', () => {
-        document.getElementById('installButton').style.display = 'none';
-    });
-</script>
+    <!-- ===== СКРИПТ РЕГИСТРАЦИИ SERVICE WORKER ===== -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('✅ Service Worker зарегистрирован');
+                })
+                .catch(error => {
+                    console.error('❌ Ошибка регистрации Service Worker:', error);
+                });
+        }
+    </script>
 </body>
 </html>

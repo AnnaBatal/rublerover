@@ -99,5 +99,18 @@
             document.getElementById('installButton').style.display = 'none';
         });
     </script>
+
+    <!-- ===== СКРИПТ РЕГИСТРАЦИИ SERVICE WORKER ===== -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('✅ Service Worker зарегистрирован');
+                })
+                .catch(error => {
+                    console.error('❌ Ошибка регистрации Service Worker:', error);
+                });
+        }
+    </script>
 </body>
 </html>
