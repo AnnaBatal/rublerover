@@ -1,5 +1,5 @@
 // ===== НАЗВАНИЕ КЕША =====
-const CACHE_NAME = 'rublerover-v3';
+const CACHE_NAME = 'rublerover-v5';
 
 // ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (ТОЛЬКО СУЩЕСТВУЮЩИЕ!) =====
 const FILES_TO_CACHE = [
@@ -7,6 +7,7 @@ const FILES_TO_CACHE = [
     '/index.html',
     '/calculator.html',
     '/history.html',
+    '/about.html',
     '/contacts.html',
     '/style.css',
     '/manifest.json',
