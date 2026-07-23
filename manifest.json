@@ -2,11 +2,16 @@
     "name": "RubleRover — Тревел-калькулятор",
     "short_name": "RubleRover",
     "description": "Планируй бюджет путешествий и сохраняй историю поездок",
-    "start_url": "/",
+
+    "id": "/rublerover/",
+    "start_url": "/rublerover/",
+    "scope": "/rublerover/",
+
     "display": "standalone",
     "background_color": "#7c3aed",
     "theme_color": "#7c3aed",
     "orientation": "portrait",
+
     "icons": [
         {
             "src": "icon-192.png",
