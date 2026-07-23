@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubleRover | Главная</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Кнопка установки приложения -->
+<button id="installButton" style="display:none; position:fixed; bottom:20px; right:20px; padding:14px 28px; background:#4a2c8a; color:white; border:none; border-radius:50px; font-size:16px; font-weight:bold; cursor:pointer; box-shadow:0 4px 15px rgba(74,44,138,0.4); z-index:999;">
+    📱 Установить приложение
+</button>
+    <header>
+        <div class="header-content">
+            <div class="logo">✈️ RubleRover</div>
+            <nav>
+                <a href="index.html" class="active">Главная</a>
+                <a href="calculator.html">Калькулятор</a>
+                <a href="history.html">История</a>
+                <a href="about.html">О проекте</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="banner">
+        <h1>Планируй бюджет путешествий</h1>
+        <p>Рассчитай расходы на поездку</p>
+    </div>
+
+    <div class="features">
+        <h2>Что умеет сервис</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">💰</div>
+                <h3>Расчёт бюджета</h3>
+                <p>Введи расходы на жильё, еду, транспорт и билеты</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h3>История поездок</h3>
+                <p>Все твои расчёты сохраняются</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌍</div>
+                <h3>Любые города</h3>
+                <p>Рассчитывай бюджет для любой точки мира</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="countries">
+        <h2>Безвизовые страны для россиян</h2>
+        <div class="countries-grid">
+            <div class="country-card">
+                <h3>Турция</h3>
+                <p>Столица: Анкара</p>
+                <p>Валюта: Турецкая лира</p>
+                <p>Без визы до 60 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Таиланд</h3>
+                <p>Столица: Бангкок</p>
+                <p>Валюта: Тайский бат</p>
+                <p>Без визы до 60 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Объединённые Арабские Эмираты</h3>
+                <p>Столица: Абу-Даби</p>
+                <p>Валюта: Дирхам ОАЭ</p>
+                <p>Без визы до 90 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Индонезия</h3>
+                <p>Столица: Джакарта</p>
+                <p>Валюта: Индонезийская рупия</p>
+                <p>Без визы до 30 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Египет</h3>
+                <p>Столица: Каир</p>
+                <p>Валюта: Египетский фунт</p>
+                <p>Без визы до 30 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Грузия</h3>
+                <p>Столица: Тбилиси</p>
+                <p>Валюта: Грузинский лари</p>
+                <p>Без визы до 365 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Сербия</h3>
+                <p>Столица: Белград</p>
+                <p>Валюта: Сербский динар</p>
+                <p>Без визы до 30 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Армения</h3>
+                <p>Столица: Ереван</p>
+                <p>Валюта: Армянский драм</p>
+                <p>Без визы до 180 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Казахстан</h3>
+                <p>Столица: Астана</p>
+                <p>Валюта: Казахстанский тенге</p>
+                <p>Без визы до 90 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Киргизия</h3>
+                <p>Столица: Бишкек</p>
+                <p>Валюта: Киргизский сом</p>
+                <p>Без визы до 60 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Беларусь</h3>
+                <p>Столица: Минск</p>
+                <p>Валюта: Белорусский рубль</p>
+                <p>Без визы до 90 дней</p>
+            </div>
+            <div class="country-card">
+                <h3>Израиль</h3>
+                <p>Столица: Иерусалим</p>
+                <p>Валюта: Израильский шекель</p>
+                <p>Без визы до 90 дней</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p> RubleRover</p>
+    </footer>
+
+    <script>
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Предотвращаем стандартное предложение браузера
+            e.preventDefault();
+            // Сохраняем событие
+            deferredPrompt = e;
+            
+            // Показываем кнопку
+            const installBtn = document.getElementById('installButton');
+            installBtn.style.display = 'block';
+        });
+
+        // Обработчик клика по кнопке — теперь он ОТДЕЛЬНО
+        document.getElementById('installButton').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Показываем диалог установки
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                console.log('Результат:', result.outcome);
+                deferredPrompt = null;
+                // Скрываем кнопку после установки
+                document.getElementById('installButton').style.display = 'none';
+            }
+        });
+
+        // Если приложение уже установлено — скрываем кнопку
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installButton').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

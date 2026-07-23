@@ -88,34 +88,30 @@
             document.getElementById('result').style.display = 'block';
         };
     </script>
-<script>
-    let deferredPrompt;
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Предотвращаем автоматический запрос
-        e.preventDefault();
-        deferredPrompt = e;
-        
-        // Показываем кнопку
-        const installBtn = document.getElementById('installButton');
-        installBtn.style.display = 'block';
-        
-        // Обработчик клика по кнопке
-        installBtn.addEventListener('click', async () => {
+    <script>
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const installBtn = document.getElementById('installButton');
+            installBtn.style.display = 'block';
+        });
+
+        document.getElementById('installButton').addEventListener('click', async () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const result = await deferredPrompt.userChoice;
                 console.log('Результат:', result.outcome);
                 deferredPrompt = null;
-                installBtn.style.display = 'none';
+                document.getElementById('installButton').style.display = 'none';
             }
         });
-    });
 
-    // Если приложение уже установлено — скрываем кнопку
-    window.addEventListener('appinstalled', () => {
-        document.getElementById('installButton').style.display = 'none';
-    });
-</script>
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installButton').style.display = 'none';
+        });
+    </script>
 </body>
 </html>

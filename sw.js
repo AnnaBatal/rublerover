@@ -1,5 +1,5 @@
 // ===== НАЗВАНИЕ КЕША =====
-const CACHE_NAME = 'rublerover-v1';
+const CACHE_NAME = 'rublerover-v2';  // <- ИЗМЕНИЛ ВЕРСИЮ НА V2
 
 // ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ =====
 const FILES_TO_CACHE = [
@@ -51,14 +51,11 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then((cachedResponse) => {
-                // Если есть в кеше — возвращаем из кеша
                 if (cachedResponse) {
                     return cachedResponse;
                 }
-                // Если нет — загружаем из сети
                 return fetch(event.request)
                     .then((response) => {
-                        // Сохраняем в кеш для будущего использования
                         return caches.open(CACHE_NAME)
                             .then((cache) => {
                                 cache.put(event.request, response.clone());
@@ -66,8 +63,7 @@ self.addEventListener('fetch', (event) => {
                             });
                     })
                     .catch(() => {
-                        // Если нет сети и нет кеша — показываем страницу офлайн
-                        return caches.match('/offline.html');
+                        return caches.match('/index.html');
                     });
             })
     );
