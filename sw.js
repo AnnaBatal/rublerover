@@ -1,13 +1,12 @@
 // ===== НАЗВАНИЕ КЕША =====
-const CACHE_NAME = 'rublerover-v2';  // <- ИЗМЕНИЛ ВЕРСИЮ НА V2
+const CACHE_NAME = 'rublerover-v3';
 
-// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ =====
+// ===== ФАЙЛЫ ДЛЯ КЕШИРОВАНИЯ (ТОЛЬКО СУЩЕСТВУЮЩИЕ!) =====
 const FILES_TO_CACHE = [
     '/',
     '/index.html',
     '/calculator.html',
     '/history.html',
-    '/about.html',
     '/contacts.html',
     '/style.css',
     '/manifest.json',
@@ -56,13 +55,17 @@ self.addEventListener('fetch', (event) => {
                 }
                 return fetch(event.request)
                     .then((response) => {
-                        return caches.open(CACHE_NAME)
-                            .then((cache) => {
-                                cache.put(event.request, response.clone());
-                                return response;
+                        // Кэшируем только успешные ответы
+                        if (response && response.status === 200) {
+                            const responseClone = response.clone();
+                            caches.open(CACHE_NAME).then((cache) => {
+                                cache.put(event.request, responseClone);
                             });
+                        }
+                        return response;
                     })
                     .catch(() => {
+                        // Если нет сети — возвращаем главную страницу
                         return caches.match('/index.html');
                     });
             })
